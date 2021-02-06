@@ -9,6 +9,7 @@ def create_and_fill_db():
     db_preparer = DbPreparer('warships.db')
     db_preparer.create_all_table()
     db_preparer.fill_all_table(get_ships(), get_weapons(), get_hulls(), get_engines())
+    db_preparer.connection_close()
 
 
 if __name__ == '__main__':

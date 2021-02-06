@@ -38,3 +38,6 @@ class DbPreparer:
         for engine in engines:
             engine_request = f'INSERT INTO engines VALUES("{engine.name}", {engine.power}, {engine.eng_type})'
             sql_add_data(self.connection, engine_request)
+
+    def connection_close(self):
+        self.connection.close()

@@ -1,16 +1,15 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from task_proj.db.dbPreparer import DbPreparer
+from task_proj.data.dataSetter import get_ships
+from task_proj.data.dataSetter import get_weapons
+from task_proj.data.dataSetter import get_hulls
+from task_proj.data.dataSetter import get_engines
 
 
-# Press the green button in the gutter to run the script.
+def create_and_fill_db():
+    db_preparer = DbPreparer('warships.db')
+    db_preparer.create_all_table()
+    db_preparer.fill_all_table(get_ships(), get_weapons(), get_hulls(), get_engines())
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    create_and_fill_db()

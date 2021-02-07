@@ -31,3 +31,44 @@ def sql_add_data(connection, sql_request: str):
         print('Success!')
     except Error:
         print(Error)
+
+
+def sql_db_backup(db_connection, backup_connection):
+    try:
+        print('Try backup...')
+        with backup_connection:
+            db_connection.backup(backup_connection)
+        print('Backup success!')
+    except Error:
+        print(Error)
+
+
+def sql_delete_table(connection, table_name: str):
+    try:
+        print(f'Try delete table: {table_name}')
+        cursor_obj = connection.cursor()
+        cursor_obj.execute(f'DROP table if exists {table_name}')
+        print('Success!')
+    except Error:
+        print(Error)
+
+
+def sql_select(connection, select_request: str):
+    try:
+        cursor_obj = connection.cursor()
+        print(f'Try execute request: {select_request}')
+        cursor_obj.execute(select_request)
+        print('Success!')
+        return tuple(cursor_obj.fetchall())
+    except Error:
+        print(Error)
+
+
+def sql_update(connection, update_request):
+    try:
+        cursor_obj = connection.cursor()
+        print(f'Try execute request: {update_request}')
+        cursor_obj.execute(update_request)
+        print('Success!')
+    except Error:
+        print(Error)

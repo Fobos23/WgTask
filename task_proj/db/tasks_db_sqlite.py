@@ -17,8 +17,8 @@ def sql_add_table(connection, sql_request: str):
         cursor_obj = connection.cursor()
         print(f'Try execute request: {sql_request}')
         cursor_obj.execute(sql_request)
-        print('Success!')
         connection.commit()
+        print('Success!')
     except Error:
         print('Table already exist')
 
@@ -28,6 +28,7 @@ def sql_add_data(connection, sql_request: str):
         cursor_obj = connection.cursor()
         print(f'Try execute request: {sql_request}')
         cursor_obj.execute(sql_request)
+        connection.commit()
         print('Success!')
     except Error:
         print(Error)
@@ -48,6 +49,7 @@ def sql_delete_table(connection, table_name: str):
         print(f'Try delete table: {table_name}')
         cursor_obj = connection.cursor()
         cursor_obj.execute(f'DROP table if exists {table_name}')
+        connection.commit()
         print('Success!')
     except Error:
         print(Error)
@@ -59,7 +61,7 @@ def sql_select(connection, select_request: str):
         print(f'Try execute request: {select_request}')
         cursor_obj.execute(select_request)
         print('Success!')
-        return tuple(cursor_obj.fetchall())
+        return list(cursor_obj.fetchall())
     except Error:
         print(Error)
 
@@ -69,6 +71,7 @@ def sql_update(connection, update_request):
         cursor_obj = connection.cursor()
         print(f'Try execute request: {update_request}')
         cursor_obj.execute(update_request)
+        connection.commit()
         print('Success!')
     except Error:
         print(Error)

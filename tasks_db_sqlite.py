@@ -35,13 +35,17 @@ def sql_add_data(connection, sql_request: str):
 
 
 def sql_db_backup(db_connection, backup_connection):
+    print('Try backup...')
     try:
-        print('Try backup...')
         with backup_connection:
             db_connection.backup(backup_connection)
         print('Backup success!')
     except Error:
         print(Error)
+    finally:
+        if backup_connection:
+            backup_connection.close()
+            db_connection.close()
 
 
 def sql_delete_table(connection, table_name: str):
@@ -57,8 +61,8 @@ def sql_delete_table(connection, table_name: str):
 
 def sql_select(connection, select_request: str):
     try:
-        cursor_obj = connection.cursor()
         print(f'Try execute request: {select_request}')
+        cursor_obj = connection.cursor()
         cursor_obj.execute(select_request)
         print('Success!')
         return list(cursor_obj.fetchall())

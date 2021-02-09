@@ -1,6 +1,6 @@
-from task_proj.db.tasks_db_sqlite import sql_connection
-from task_proj.db.tasks_db_sqlite import sql_add_table
-from task_proj.db.tasks_db_sqlite import sql_add_data
+from tasks_db_sqlite import sql_connection
+from tasks_db_sqlite import sql_add_table
+from tasks_db_sqlite import sql_add_data
 
 
 class DbPreparer:

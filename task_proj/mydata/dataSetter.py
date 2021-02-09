@@ -1,7 +1,7 @@
-from task_proj.data.taskObjects import ship
-from task_proj.data.taskObjects import weapon
-from task_proj.data.taskObjects import hull
-from task_proj.data.taskObjects import engine
+from task_proj.mydata.taskObjects import ship
+from task_proj.mydata.taskObjects import weapon
+from task_proj.mydata.taskObjects import hull
+from task_proj.mydata.taskObjects import engine
 from random import randint
 
 

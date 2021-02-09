@@ -1,11 +1,11 @@
-from task_proj.environment import prod_db
-from task_proj.environment import test_db
-from task_proj.environment import tables_name
-from task_proj.db.tasks_db_sqlite import sql_connection
-from task_proj.db.tasks_db_sqlite import sql_db_backup
-from task_proj.db.tasks_db_sqlite import sql_delete_table
-from task_proj.db.tasks_db_sqlite import sql_update
-from task_proj.db.tasks_db_sqlite import sql_select
+from environment import prod_db
+from environment import test_db
+from environment import tables_name
+from tasks_db_sqlite import sql_select
+from tasks_db_sqlite import sql_connection
+from tasks_db_sqlite import sql_db_backup
+from tasks_db_sqlite import sql_delete_table
+from tasks_db_sqlite import sql_update
 from random import randint
 
 
@@ -76,3 +76,9 @@ class DbHelper:
         else:
             update_req = f'UPDATE hulls SET type = {randint(1, 20)} where engine = "{engine_name}"'
             sql_update(self.test_connection, update_req)
+
+    def select_tests_data(self, select_request='SELECT ship, weapon, hull, engine FROM ships'):
+        return sql_select(self.test_connection, select_request)
+
+    def select_prod_data(self, select_request):
+        return sql_select(self.prod_connection, select_request)
